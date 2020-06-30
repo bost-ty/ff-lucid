@@ -5,7 +5,7 @@ also tells you the date.
 
 ### Installation:
 #### Using the official Firefox Add-Ons:
-1) Go to (the product page)[https://addons.mozilla.org/en-US/firefox/addon/ff-lucid/].
+1) Go to [the product page](https://addons.mozilla.org/en-US/firefox/addon/ff-lucid/).
 2) Install it!
 
 ### TODO:
