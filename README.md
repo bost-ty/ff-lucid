@@ -7,8 +7,5 @@
 1) Go to [the product page](https://addons.mozilla.org/en-US/firefox/addon/ff-lucid/).
 2) Install it!
 
-### TODO:
-
-[X] Firefox Sync storage for note contents
-
-[] Deal with Firefox privacy/anti-fingerprinting for Date() timezone and prefers-color-scheme issues
+### Known Issues:
+ - Firefox privacy/anti-fingerprinting settings prevent access to accurate Date() timezone (defaults to UTC +000) and prefers-color-scheme (defaults to light). For these cases, users need to be able to manually set preferred color scheme & timezone.
