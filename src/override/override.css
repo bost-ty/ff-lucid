@@ -30,7 +30,11 @@ html {
   overflow: hidden;
 }
 
-/* Firefox with fingerprinting avoidance doesn't handle prefers-color-scheme very well and would always default to light mode (even if this is set to 'dark' in system or browser preferences) */
+/* 
+Firefox with fingerprinting avoidance doesn't handle prefers-color-scheme very well 
+and will always default to light mode (even if set to 'dark' in system and/or browser preferences). 
+Leaving this note & CSS in for future reference when options page is implemented. 
+*/
 
 /* @media (prefers-color-scheme: light) {
   :root {
@@ -68,7 +72,6 @@ body::after {
 }
 
 .notepad {
-  /* align-self: center; */
   max-width: 100%;
   width: 100%;
   margin-left: 50%;
@@ -94,31 +97,31 @@ body::after {
 /* max = "up to" , min = "starting at" */
 /* My god I am so sorry this is just the easiest way to force this on my screen */
 
-@media all and (min-width: 1100px) {
+@media (min-width: 1100px) {
   .notepad {
     width: 80vw;
   }
 }
 
-@media all and (min-width: 1300px) {
+@media (min-width: 1300px) {
   .notepad {
     width: 75vw;
   }
 }
 
-@media all and (min-width: 1500px) {
+@media (min-width: 1500px) {
   .notepad {
     width: 70vw;
   }
 }
 
-@media all and (min-width: 1700px) {
+@media (min-width: 1700px) {
   .notepad {
     width: 65vw;
   }
 }
 
-@media all and (min-width: 1900px) {
+@media (min-width: 1900px) {
   .notepad {
     width: 60vw;
   }
