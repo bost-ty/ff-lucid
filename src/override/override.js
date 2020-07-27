@@ -25,6 +25,8 @@ function readStore(storeKey, cb) {
 }
 
 // Constants
+const timezoneOffset = 0;
+
 const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 const months = [
@@ -97,7 +99,7 @@ function start(data) {
   // Create Date, determine and format time of day
   let now = new Date();
   let timeString = `${weekdays[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}`;
-  let roughHours = now.getHours();
+  let roughHours = now.getHours() - timezoneOffset;
   let broadTime = roughHours < 12 ? "morning" : roughHours > 17 ? "evening" : "afternoon";
 
   let g = document.querySelector(".greeting");
