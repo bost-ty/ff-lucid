@@ -6,7 +6,7 @@
 
 // Updated by @bost_ty, 2020, for Firefox compatibility :)
 
-// // // Define global functions
+// Define global functions
 function updateStore(storeKey, data) {
   let obj = {};
   obj[storeKey] = JSON.stringify(data);
@@ -24,16 +24,8 @@ function readStore(storeKey, cb) {
   });
 }
 
-// // // Set up constants
-const weekdays = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
+// Constants
+const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 const months = [
   "January",
@@ -52,19 +44,20 @@ const months = [
 
 const key = "rhugtkeldibnridrlerlgcrrdvneevit";
 
-// // // Set up the store for our data
+// Set up the store for our data
 // We want to track the notepad's contents.
 let defaultData = {
   notepadContent: "",
 };
 
 // >= v0.0.3 uses an object to store notepad content
-// >= v1.1.2 uses ync to store notepad content
+// >= v1.1.2 uses sync to store notepad content
+
 // provide a fallback for older versions
 readStore(key, (d) => {
   let data;
 
-  // Check if we got data from Sync storage, if so, no fallback is needed
+  // Check if we got data from sync storage. If so, no fallback is needed
   if (d) {
     data = d;
   } else {
@@ -100,21 +93,17 @@ function listenerUpdate() {
   });
 }
 
-// Parse the date for Firefox
 function start(data) {
   // Create Date, determine and format time of day
   let now = new Date();
-  let timeString = `${weekdays[now.getDay()]}, 
-  ${months[now.getMonth()]} ${now.getDate()}`;
-  // Super cheap, hacky way of dealing with FF not getting local time...
-  let roughHours = now.getHours() - 7;
-  let broadTime =
-    roughHours < 12 ? "morning" : roughHours > 17 ? "evening" : "afternoon";
+  let timeString = `${weekdays[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}`;
+  let roughHours = now.getHours();
+  let broadTime = roughHours < 12 ? "morning" : roughHours > 17 ? "evening" : "afternoon";
 
   let g = document.querySelector(".greeting");
   g.innerHTML = `Good ${broadTime}. Today is ${timeString}.`;
 
-  // Set up the Notepad
+  // Set up the notepad
   let notepad = document.querySelector(".notepad");
   notepad.innerHTML = data["notepadContent"];
 
@@ -129,7 +118,6 @@ function start(data) {
   });
 
   // Allow updating content between tabs
-  // WB: I don't fully understand the purpose for this and I'm not touching it (yet).
   let windowIsActive;
 
   let storeListener = setInterval(listenerUpdate, 1000);
