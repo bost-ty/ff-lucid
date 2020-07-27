@@ -15,6 +15,10 @@
   "chrome_settings_overrides": {
     "homepage": "src/override/override.html"
   },
+  "options_ui": {
+    "page": "src/options/options.html",
+    "browser_style": false
+  },
   "browser_specific_settings": {
     "gecko": {
       "id": "fflucid@fflucid.com",

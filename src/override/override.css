@@ -52,6 +52,7 @@ body {
   margin: auto;
   padding: 3rem;
   padding-bottom: 0;
+  font-family: var(--fontStack);
 }
 
 body::after {
