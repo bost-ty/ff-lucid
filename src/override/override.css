@@ -7,7 +7,7 @@
   --foreground: var(--light);
   --background: var(--dark);
 
-  --fontStack: "Fira Code", "Courier New", monospace;
+  --fontStack: "FireCode NF", "Fira Code", "Courier New", monospace;
 }
 
 * {
