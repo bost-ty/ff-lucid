@@ -26,5 +26,12 @@
       "strict_min_version": "42.0"
     }
   },
-  "permissions": ["storage"]
+  "permissions": ["storage"],
+  "browser_action": {
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  }
 }
