@@ -17,6 +17,7 @@ function saveOptions(e) {
 function restoreOptions() {
   function setCurrentChoice(result) {
     timezoneOffset.value = result.timezone || -7;
+    console.log(result);
   }
 
   function onError(error) {
@@ -30,5 +31,4 @@ function restoreOptions() {
 document.addEventListener("DOMContentLoaded", restoreOptions);
 optionsForm.addEventListener("submit", saveOptions);
 
-const userTimezoneOffset = timezoneOffset.value;
-export default userTimezoneOffset;
+// export const userTimezoneOffset = timezoneOffset.value;

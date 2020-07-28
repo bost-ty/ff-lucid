@@ -1,4 +1,3 @@
-import userTimezoneOffset from "../options/options.js";
 // L U  C   I    D
 // Daniel Eden wrote this code
 // He also happened to write this ode
@@ -7,7 +6,13 @@ import userTimezoneOffset from "../options/options.js";
 
 // Updated by @bost_ty, 2020, for Firefox compatibility :)
 
-// Get data from options.js
+// Get timezone offset from Options
+let getting = browser.storage.sync.get();
+getting.then((result) => {
+  timezoneOffset = result.timezone;
+  console.log(result);
+  console.log(result.timezone);
+});
 
 // Define global functions
 function updateStore(storeKey, data) {
@@ -28,7 +33,7 @@ function readStore(storeKey, cb) {
 }
 
 // Constants
-const timezoneOffset = 0;
+// const timezoneOffset = userTimezoneOffset;
 
 const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
