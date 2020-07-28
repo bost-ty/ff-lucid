@@ -1,4 +1,4 @@
-# Lucid
+# Lucid for Firefox
 
 #### [<img align="right" src="https://addons.cdn.mozilla.net/static/img/addons-buttons/AMO-button_2.png">](https://addons.mozilla.org/firefox/addon/ff-lucid/) Replace your Home & New Tab pages with a simple personal notepad and a greeting that includes the date and time of day.
 
@@ -11,4 +11,14 @@
 
 ### Known Issues:
 
-- Firefox privacy/anti-fingerprinting settings prevent access to accurate Date() time zone offset (defaults to UTC +000) and prefers-color-scheme (defaults to light). For these cases, users need to be able to manually set preferred color scheme & time zone.
+- If enabled, Firefox's anti-fingerprinting settings prevent access to accurate `Date()` time zone offset (defaults to UTC, `Date().getTimezoneOffset()` of 0) and `prefers-color-scheme` media queries (defaults to light). For these cases, users need to be able to manually set their preferred color scheme & time zone.
+
+### Solutions:
+
+- Time zone offset: if the rough time of day (morning/afternoon/evening) in the greeting is incorrect, open FFLucid's options page and input your preferred time zone offset.
+
+- Color scheme preferences: until this feature is fully implemented, the best workaround is to about `about:config` in the address bar, accept the warning, and create or set the flag of `ui.systemUsesDarkTheme` to 1 for dark or 0 for light, making sure the Number option is selected.
+
+#### Thank you!
+
+A big shoutout to [Daniel Eden](https://github.com/daneden) for creating the original Lucid New Tab and allowing me to port his code over to Firefox. Thanks Dan!
