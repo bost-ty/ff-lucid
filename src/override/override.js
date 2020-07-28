@@ -1,3 +1,4 @@
+import userTimezoneOffset from "../options/options.js";
 // L U  C   I    D
 // Daniel Eden wrote this code
 // He also happened to write this ode
@@ -5,6 +6,8 @@
 // Which, I hope, you find in this toy
 
 // Updated by @bost_ty, 2020, for Firefox compatibility :)
+
+// Get data from options.js
 
 // Define global functions
 function updateStore(storeKey, data) {

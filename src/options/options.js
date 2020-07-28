@@ -5,26 +5,30 @@ const timezoneOffset = optionsForm.querySelector("#timezone-offset");
 // const colorRadios = optionsForm.querySelectorAll("input[name=color-scheme]");
 // const btnSave = optionsForm.querySelector("button");
 
-// Save and load settings
+// Save on submit
 function saveOptions(e) {
-  e.preventDefault();
   browser.storage.sync.set({
-    timezone: document.querySelector("#timezone-offset").value,
+    timezone: timezoneOffset.value,
   });
+  e.preventDefault();
 }
 
+// Restore options on load
 function restoreOptions() {
   function setCurrentChoice(result) {
-    document.querySelector("#timezone-offset").value = result.color || -7;
+    timezoneOffset.value = result.timezone || -7;
   }
 
   function onError(error) {
-    console.log(`Error: ${error}`);
+    console.log(`FFLucid: Error: ${error}`);
   }
 
-  let getting = browser.storage.sync.get("color");
+  let getting = browser.storage.sync.get();
   getting.then(setCurrentChoice, onError);
 }
 
 document.addEventListener("DOMContentLoaded", restoreOptions);
-document.querySelector("form").addEventListener("submit", saveOptions);
+optionsForm.addEventListener("submit", saveOptions);
+
+const userTimezoneOffset = timezoneOffset.value;
+export default userTimezoneOffset;
