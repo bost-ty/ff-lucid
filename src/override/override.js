@@ -6,7 +6,7 @@
 
 // Updated by @bost_ty, 2020, for Firefox compatibility :)
 
-// Color scheme
+// Color scheme overrides, not implemented:
 // https://stackoverflow.com/questions/56300132/how-to-override-css-prefers-color-scheme-setting
 
 // Define global functions
@@ -47,42 +47,13 @@ const months = [
 
 const key = "rhugtkeldibnridrlerlgcrrdvneevit";
 
-// Set up the store for our data
-let defaultData = {
-  notepadContent: "",
-};
-
-// Use sync to store data
+// Read and load data from sync
 readStore(key, (d) => {
   let data;
 
-  // Check if we got data from sync storage. If so, no fallback is needed
+  // Check if we got data from sync storage
   if (d) {
     data = d;
-    // } else {
-    //   // Fallback: Get the local storage
-    //   local = localStorage.getItem(key);
-    //   // Check if we got local storage data
-    //   if (local) {
-    //     // Try parsing the local storage data as JSON.
-    //     // If it succeeds, we had an object in local storage
-    //     try {
-    //       data = JSON.parse(local);
-    //       updateStore(key, local);
-    //     } catch (e) {
-    //       // If it fails to parse, we had the notepad content in local storage
-    //       data = defaultData;
-    //       data.notepadContent = localStorage.getItem(key);
-    //       updateStore(key, data);
-    //     }
-    //     // Delete the local storage
-    //     localStorage.removeItem(key);
-    //   }
-    //   // If we couldn't get data from anywhere, set to default data
-    //   if (!data) {
-    //     data = defaultData;
-    //   }
-    // }
     start(data);
   }
 });
@@ -94,16 +65,22 @@ function listenerUpdate() {
 }
 
 function start(data) {
-  // Get timezone offset, set on Options page, from sync storage
+  // Get timezone offset set in Options from sync storage
   let timezoneOffset;
   const getting = browser.storage.sync.get();
   getting.then((result) => {
     timezoneOffset = result.timezone;
   });
 
-  // Create Date, determine and format time of day
+  // Determine and format date & time of day
   let now = new Date();
   let timeString = `${weekdays[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}`;
+
+  // Check if offset from Date is non-zero, and if so, use it by default
+  if (now.getTimezoneOffset() !== 0 && timezoneOffset) {
+    timezoneOffset = now.getTimezoneOffset();
+  }
+
   let roughHours = now.getHours() + timezoneOffset;
   let broadTime = roughHours < 12 ? "morning" : roughHours > 17 ? "evening" : "afternoon";
 
@@ -124,7 +101,6 @@ function start(data) {
     updateStore(key, obj);
   });
 
-  // *** *** Keep this stuff! *** ***
   // Allow updating content between tabs
   let windowIsActive;
 
