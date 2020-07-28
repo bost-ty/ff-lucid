@@ -10,8 +10,8 @@
 let getting = browser.storage.sync.get();
 getting.then((result) => {
   timezoneOffset = result.timezone;
-  console.log(result);
-  console.log(result.timezone);
+  // console.log(result);
+  // console.log(result.timezone);
 });
 
 // Define global functions
@@ -33,8 +33,6 @@ function readStore(storeKey, cb) {
 }
 
 // Constants
-// const timezoneOffset = userTimezoneOffset;
-
 const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 const months = [
