@@ -7,7 +7,7 @@
   --foreground: var(--light);
   --background: var(--dark);
 
-  --fontStack: "Fira Code", "Courier New", monospace;
+  --fontStack: "FireCode NF", "Fira Code", "Courier New", monospace;
 }
 
 * {
@@ -48,10 +48,11 @@ body {
   flex-direction: column;
   align-items: center;
   flex: 1 1 100%;
-  height: 100%;
+  height: 100vh;
   margin: auto;
   padding: 3rem;
   padding-bottom: 0;
+  font-family: var(--fontStack);
 }
 
 body::after {

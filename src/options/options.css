@@ -1,0 +1,64 @@
+/* Assuming options.html is pulling override.css as well */
+
+.options-title {
+  font-size: 2rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.options-form {
+  margin-top: 3rem;
+  display: flex;
+  flex-flow: column nowrap;
+  text-align: center;
+}
+
+.options-form input {
+  border: none;
+}
+
+.options-form label {
+  margin: 0.5rem auto;
+}
+
+.options-form #timezone-offset {
+  text-align: center;
+  max-width: 30%;
+  margin: 0 auto;
+}
+
+.options-form input[type="radio"] {
+  margin: 0 0.25rem auto 0.25rem;
+}
+
+.options-form span {
+  color: var(--med);
+}
+.options-form button {
+  width: 200px;
+  max-width: 50%;
+  min-width: 30%;
+  margin: 2.5rem auto;
+  padding: 0.75rem 0.5rem;
+  color: inherit;
+  background-color: inherit;
+  box-shadow: 17px 17px 0 hsl(0, 0%, 70%);
+  transform: translate(-5px, -5px);
+  border: 1px solid hsl(0, 0%, 92%);
+  transition: all ease-out 100ms;
+}
+
+.options-form button:hover {
+  color: hsl(0, 0%, 100%);
+  background-color: hsl(0, 0%, 12%);
+  box-shadow: 0px 0px 0px 0px hsla(0, 0%, 100%, 50%);
+  transform: translate(0px, 0px) scale(1.05);
+  border: 1px solid #f7f7f7;
+}
+
+.options-form button:active {
+  background-color: hsl(0, 0%, 10%);
+  box-shadow: 0px 0px 0px 0px hsla(0, 0%, 100%, 50%);
+  transform: scale(1) translate(0, 0);
+  border: 1px solid hsla(0, 0%, 0%, 0);
+}
