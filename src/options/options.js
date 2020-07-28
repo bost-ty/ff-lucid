@@ -1,16 +1,30 @@
-// Fetch is a simpler way to conduct HTTP requests
-// Can I use this to load a local JSON file?
-// There's one gotcha, but otherwise easy.
+// @bost-ty, 2020, FFLucid
 
-// Fetch does require a HTTP request though? It does. Do we need to fake it?
+const optionsForm = document.querySelector(".options-form");
+const timezoneOffset = optionsForm.querySelector("#timezone-offset");
+// const colorRadios = optionsForm.querySelectorAll("input[name=color-scheme]");
+// const btnSave = optionsForm.querySelector("button");
 
-// fetch(`https://raw.githubusercontent.com/dmfilipenko/timezones.json/master/timezones.json`);
-
-fetch("./timezones.json")
-  .then(function (resp) {
-    return resp.json();
-  })
-  .then(function (data) {
-    console.log(data);
+// Save and load settings
+function saveOptions(e) {
+  e.preventDefault();
+  browser.storage.sync.set({
+    timezone: document.querySelector("#timezone-offset").value,
   });
-data.forEach((item) => console.log(item));
+}
+
+function restoreOptions() {
+  function setCurrentChoice(result) {
+    document.querySelector("#timezone-offset").value = result.color || -7;
+  }
+
+  function onError(error) {
+    console.log(`Error: ${error}`);
+  }
+
+  let getting = browser.storage.sync.get("color");
+  getting.then(setCurrentChoice, onError);
+}
+
+document.addEventListener("DOMContentLoaded", restoreOptions);
+document.querySelector("form").addEventListener("submit", saveOptions);

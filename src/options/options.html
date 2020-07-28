@@ -3,23 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../override/override.css" />
     <link rel="stylesheet" href="options.css" />
     <title>FFLucid Options</title>
   </head>
   <body>
-    <h1>FFLucid Options</h1>
-    <div class="form-container">
-      <form class="form">
-        <div class="form-item">
-          <label>
-            Select your timezone offset:
-            <select name="timezone" id="timezone">
-              <option value=""></option>
-            </select>
-          </label>
-        </div>
-      </form>
-    </div>
+    <h1 class="options-title">FFLucid Options</h1>
+    <form action="" class="options-form">
+      <label for="timezone-offset">
+        What is your timezone offset?
+        <input type="number" name="timezone-offset" id="timezone-offset" placeholder="-7" max="14" min="-12" />
+      </label>
+      <label for="color-scheme">
+        What is your preferred color scheme?
+        <input type="radio" name="color-scheme" id="light" value="light" />Light
+        <input type="radio" name="color-scheme" id="dark" value="dark" />Dark
+      </label>
+      <button type="submit">Save</button>
+    </form>
     <script src="options.js"></script>
   </body>
 </html>
