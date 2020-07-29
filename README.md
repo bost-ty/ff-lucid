@@ -17,7 +17,7 @@
 
 - Time zone offset: if the rough time of day (morning/afternoon/evening) in the greeting is incorrect, open FFLucid's options page and input your preferred time zone offset.
 
-- Color scheme preferences: until this feature is fully implemented, the best workaround is to about `about:config` in the address bar, accept the warning, and create or set the flag of `ui.systemUsesDarkTheme` to 1 for dark or 0 for light, making sure the Number option is selected.
+- Color scheme preferences: until this feature is fully implemented, the best workaround is to input `about:config` in the address bar, accept the warning, and create or set the flag of `ui.systemUsesDarkTheme` to 1 for dark or 0 for light, making sure the Number option is selected.
 
 #### Thank you!
 
