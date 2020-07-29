@@ -4,7 +4,7 @@
 // To focus, clarity, rest, and joy
 // Which, I hope, you find in this toy
 
-// Updated by @bost_ty, 2020, for Firefox compatibility :)
+// Updated @bost_ty, 2020, for Firefox
 
 // Color scheme overrides, not implemented:
 // https://stackoverflow.com/questions/56300132/how-to-override-css-prefers-color-scheme-setting
@@ -64,13 +64,28 @@ function listenerUpdate() {
   });
 }
 
+let timezoneOffset;
+
 function start(data) {
   // Get timezone offset set in Options from sync storage
-  let timezoneOffset;
-  const getting = browser.storage.sync.get();
-  getting.then((result) => {
-    timezoneOffset = result.timezone;
-  });
+  // const getting = browser.storage.sync.get();
+  // getting
+  //   .then((result) => {
+  //     console.log("Start IF");
+  //     if (getting) timezoneOffset = result.timezone;
+  //     console.log(timezoneOffset);
+  //   })
+  //   .then(() => {
+  //     console.log("then then;");
+  //   });
+
+  // browser.storage.sync.set({ key: value }, function () {
+  //   console.log("Value is set to " + value);
+  // });
+
+  // browser.storage.sync.get(["key"], function (result) {
+  //   console.log("Value currently is " + result.key);
+  // });
 
   // Determine and format date & time of day
   let now = new Date();
