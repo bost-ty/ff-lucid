@@ -60,7 +60,7 @@ readStore(key, (d) => {
 
 function listenerUpdate() {
   readStore(key, (d) => {
-    document.querySelector(".notepad").innerHTML = d.notepadContent;
+    document.querySelector(".notepad").textContent = d.notepadContent;
   });
 }
 
@@ -85,11 +85,11 @@ function start(data) {
   let broadTime = roughHours < 12 ? "morning" : roughHours > 17 ? "evening" : "afternoon";
 
   let g = document.querySelector(".greeting");
-  g.innerHTML = `Good ${broadTime}. Today is ${timeString}.`;
+  g.textContent = `Good ${broadTime}. Today is ${timeString}.`;
 
   // Set up the notepad
   let notepad = document.querySelector(".notepad");
-  notepad.innerHTML = data["notepadContent"];
+  notepad.textContent = data["notepadContent"];
 
   notepad.addEventListener("input", (e) => {
     if (notepad !== document.activeElement || !windowIsActive) return;
