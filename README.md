@@ -13,6 +13,8 @@
 
 - If enabled, Firefox's anti-fingerprinting settings prevent access to accurate `Date()` time zone offset (defaults to UTC, `Date().getTimezoneOffset()` of 0) and `prefers-color-scheme` media queries (defaults to light). For these cases, users need to be able to manually set their preferred color scheme & time zone.
 
+- Home Page override (but not New Tab override) is no longer functioning.
+
 ### Solutions:
 
 - Time zone offset: if the rough time of day (morning/afternoon/evening) in the greeting is incorrect, open FFLucid's options page and input your preferred time zone offset.
