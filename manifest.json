@@ -1,6 +1,6 @@
 {
   "name": "FFLucid",
-  "version": "1.0.0",
+  "version": "1.0.0-beta",
   "manifest_version": 2,
   "description": "Replace your new tab page with the date and a simple notepad.",
   "icons": {
