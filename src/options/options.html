@@ -12,14 +12,34 @@
     <form action="" class="options-form">
       <label for="timezone-offset">
         What is your timezone offset?
-        <input type="number" name="timezone-offset" id="timezone-offset" placeholder="-7" max="14" min="-12" />
+        <div>
+          <input type="number" name="timezone-offset" id="timezone-offset" placeholder="-7" max="14" min="-12" />
+        </div>
       </label>
       <label for="color-scheme">
         What is your preferred color scheme?
-        <input type="radio" name="color-scheme" id="light" value="light" />Light
-        <span> or </span>
-        <input type="radio" name="color-scheme" id="dark" value="dark" />Dark
+        <div>
+          <input type="radio" name="color-scheme" id="dark" value="dark" />Dark
+          <span> or </span>
+          <input type="radio" name="color-scheme" id="light" value="light" />Light
+        </div>
       </label>
+      <label for="font">
+        What is your preferred font family?
+        <div>
+          <input type="radio" name="font" id="mono" value="mono" />Monospace
+          <span> or </span>
+          <input type="radio" name="font" id="sans" value="sans" />Sans-Serif
+        </div>
+      </label>
+      <!-- <label for="auto-adjust">
+        Should your color scheme match the time of day?
+        <div>
+          <input type="radio" name="auto-adjust" id="adjust-yes" value="yes" />Yes
+          <span> or </span>
+          <input type="radio" name="auto-adjust" id="adjust-no" value="no" />No
+        </div>
+      </label> -->
       <button type="submit">Save</button>
     </form>
     <script src="options.js"></script>

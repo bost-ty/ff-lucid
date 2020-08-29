@@ -6,9 +6,6 @@
 
 // Updated @bost_ty, 2020, for Firefox
 
-// Color scheme overrides, not implemented:
-// https://stackoverflow.com/questions/56300132/how-to-override-css-prefers-color-scheme-setting
-
 // Define global functions
 function updateStore(storeKey, data) {
   let obj = {};
@@ -24,12 +21,44 @@ function readStore(storeKey, cb) {
   });
 }
 
-// Get timezone offset set in Options from sync storage
+// Get Options from sync storage
 const getting = browser.storage.sync.get();
+
 let timezoneOffset;
+let colorPreference;
+let fontPreference;
+
 getting.then((result) => {
-  if (getting) timezoneOffset = parseInt(result.timezone);
+  if (getting) {
+    timezoneOffset = parseInt(result.timezone);
+    colorPreference = result.colorPreference;
+    fontPreference = result.fontPreference;
+    checkPreferences();
+  }
 });
+
+function checkPreferences() {
+  // Set color and font preference.
+  const rootStyles = document.documentElement;
+  const light = getComputedStyle(rootStyles).getPropertyValue("--light");
+  const dark = getComputedStyle(rootStyles).getPropertyValue("--dark");
+  const sans = getComputedStyle(rootStyles).getPropertyValue("--sans");
+  const mono = getComputedStyle(rootStyles).getPropertyValue("--mono");
+  if (!colorPreference) {
+    // Default to dark mode
+    rootStyles.style.setProperty("--foreground", light);
+    rootStyles.style.setProperty("--background", dark);
+  } else if (colorPreference == "light") {
+    rootStyles.style.setProperty("--foreground", dark);
+    rootStyles.style.setProperty("--background", light);
+  } else if (colorPreference == "dark") {
+    rootStyles.style.setProperty("--foreground", light);
+    rootStyles.style.setProperty("--background", dark);
+  }
+  if (!fontPreference) rootStyles.style.setProperty("--fontStack", mono);
+  else if (fontPreference == "sans") rootStyles.style.setProperty("--fontStack", sans);
+  else if (fontPreference == "mono") rootStyles.style.setProperty("--fontStack", mono);
+}
 
 // Constants
 const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];

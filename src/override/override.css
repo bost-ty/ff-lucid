@@ -1,13 +1,15 @@
-/* Dark Mode is the default */
+/* Dark Mode and Monospace are the default */
 :root {
   --light: #f7f7f7;
   --dark: #1a1a1a;
   --med: #808080;
 
-  --foreground: var(--light);
-  --background: var(--dark);
+  --foreground: var(--med);
+  --background: var(--med);
 
-  --fontStack: "FireCode NF", "Fira Code", "Courier New", monospace;
+  --fontStack: var(--mono);
+  --mono: "FireCode NF", "Fira Code", "Cascadia Code", "Courier New", monospace;
+  --sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, sans-serif;
 }
 
 * {
@@ -29,19 +31,6 @@ html {
   transition: 0.1s ease;
   overflow: hidden;
 }
-
-/* 
-Firefox with fingerprinting avoidance doesn't handle prefers-color-scheme very well 
-and will always default to light mode (even if set to 'dark' in system and/or browser preferences). 
-Leaving this note & CSS in for future reference when options page is implemented. 
-*/
-
-/* @media (prefers-color-scheme: light) {
-  :root {
-    --foreground: var(--dark);
-    --background: var(--light);
-  }
-} */
 
 body {
   display: flex;
@@ -94,9 +83,7 @@ body::after {
 /* ------------- */
 /* MEDIA QUERIES */
 /* ------------- */
-
 /* max = "up to" , min = "starting at" */
-/* My god I am so sorry this is just the easiest way to force this on my screen */
 
 @media (min-width: 1100px) {
   .notepad {
