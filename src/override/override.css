@@ -1,4 +1,3 @@
-/* Dark Mode and Monospace are the default */
 :root {
   --light: #f7f7f7;
   --dark: #1a1a1a;
@@ -9,7 +8,7 @@
 
   --fontStack: var(--mono);
   --mono: "FireCode NF", "Fira Code", "Cascadia Code", "Courier New", monospace;
-  --sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, sans-serif;
+  --sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Arial, sans-serif;
 }
 
 * {
@@ -28,7 +27,7 @@ html {
   height: 100%;
   line-height: 1.75;
   transition-property: background-color, color;
-  transition: 0.1s ease;
+  transition: 100ms ease-in-out;
   overflow: hidden;
 }
 
@@ -64,10 +63,7 @@ body::after {
 .notepad {
   max-width: 100%;
   width: 100%;
-  margin-left: 50%;
-  margin-right: 50%;
-  margin-bottom: 1.5rem;
-  margin-top: 1.5rem;
+  margin: 1.5rem auto;
   appearance: none;
   background: transparent;
   border: none;
@@ -79,11 +75,6 @@ body::after {
   scrollbar-width: thin;
   scrollbar-color: var(--med) var(--dark);
 }
-
-/* ------------- */
-/* MEDIA QUERIES */
-/* ------------- */
-/* max = "up to" , min = "starting at" */
 
 @media (min-width: 1100px) {
   .notepad {
