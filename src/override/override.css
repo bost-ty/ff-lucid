@@ -27,7 +27,7 @@ html {
   height: 100%;
   line-height: 1.75;
   transition-property: background-color, color;
-  transition: 100ms ease-in-out;
+  transition: 100ms ease;
   overflow: hidden;
 }
 
