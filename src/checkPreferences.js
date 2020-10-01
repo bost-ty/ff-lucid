@@ -1,4 +1,4 @@
-export function checkPreferences() {
+function checkPreferences() {
   // Set color and font preference.
   const rootStyles = document.documentElement;
   const light = getComputedStyle(rootStyles).getPropertyValue("--light");
@@ -22,3 +22,5 @@ export function checkPreferences() {
   else if (fontPreference == "sans") rootStyles.style.setProperty("--fontStack", sans);
   else if (fontPreference == "mono") rootStyles.style.setProperty("--fontStack", mono);
 }
+
+export { checkPreferences };
