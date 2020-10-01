@@ -1,10 +1,5 @@
 // @bost-ty, 2020, FFLucid
 
-// import { checkPreferences } from "../checkPreferences";
-// Set color scheme and font preference.
-
-// end import
-
 const optionsForm = document.querySelector(".options-form");
 const timezoneOffset = optionsForm.querySelector("#timezone-offset");
 const colorRadios = optionsForm.querySelectorAll("input[name='color-scheme']");
@@ -26,6 +21,7 @@ function restoreOptions() {
   });
 }
 
+// Set color scheme and font preference.
 function checkPreferences() {
   const rootStyles = document.documentElement;
   const light = getComputedStyle(rootStyles).getPropertyValue("--light");

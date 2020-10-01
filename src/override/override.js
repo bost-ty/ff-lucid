@@ -6,7 +6,6 @@
 
 // Updated @bost_ty, 2020, for Firefox
 
-// import { checkPreferences } from "../checkPreferences";
 // Set color scheme and font preference.
 function checkPreferences() {
   const rootStyles = document.documentElement;
@@ -31,7 +30,6 @@ function checkPreferences() {
   else if (fontPreference == "sans") rootStyles.style.setProperty("--fontStack", sans);
   else if (fontPreference == "mono") rootStyles.style.setProperty("--fontStack", mono);
 }
-// end import
 
 // Define global functions
 function updateStore(storeKey, data) {
@@ -51,6 +49,7 @@ function readStore(storeKey, cb) {
 // Get Options from sync storage
 const getting = browser.storage.sync.get();
 
+// Initalize settings variables
 let timezoneOffset;
 let colorPreference;
 let fontPreference;

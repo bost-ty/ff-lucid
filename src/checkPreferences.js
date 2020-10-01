@@ -1,3 +1,7 @@
+// This was intended to be imported into options.js and override.js to avoid
+// repeating myself, but for the life of me I cannot get it to work in WebExtensions.
+// Leaving it in the repo for reference/as central authority on checkPreferences().
+
 function checkPreferences() {
   // Set color and font preference.
   const rootStyles = document.documentElement;
