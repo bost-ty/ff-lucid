@@ -19,7 +19,6 @@ const getting = browser.storage.sync.get();
 getting.then((result) => {
   if (getting) {
     console.log(result);
-    kg;
     timezoneOffset = parseInt(result.timezone);
     colorPreference = result.colorPreference;
     fontPreference = result.fontPreference;
