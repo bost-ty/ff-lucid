@@ -6,6 +6,11 @@
 
 // Updated by @bost-ty, 2020, for Firefox
 
+// Initialize settings variables
+let timezoneOffset;
+let colorPreference;
+let fontPreference;
+
 // Get Options from sync storage
 const getting = browser.storage.sync.get();
 
@@ -46,11 +51,6 @@ function restoreOptions() {
     }
   });
 }
-
-// Initialize settings variables
-let timezoneOffset;
-let colorPreference;
-let fontPreference;
 
 // Set color scheme and font preference.
 function checkPreferences() {
