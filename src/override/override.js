@@ -13,41 +13,7 @@ let fontPreference;
 
 let initialNotepadContent;
 
-// On page load, get from storage
-window.onload = function () {
-  console.log("window onload called");
-  let getting = browser.storage.sync.get();
-  getting.then((result) => {
-    if (getting) {
-      console.log(result);
-      timezoneOffset = parseInt(result.timezone);
-      colorPreference = result.colorPreference;
-      fontPreference = result.fontPreference;
-      initialNotepadContent = result.notepadContent;
-      checkPreferences();
-    } else {
-      console.error("Could not fetch from browser sync storage!");
-    }
-  });
-};
-
-console.log(initialNotepadContent);
-
-// Define global functions
-// function updateStore(data) {
-//   let getting = browser.storage.sync.get();
-//   getting.then((result) => {
-//     browser.storage.sync.set({ ...result, notepadContent: notepad.textContent });
-//   });
-// }
-
-// function readStore(cb) {
-//   browser.storage.sync.get((result) => {
-//     let d = null;
-//     if (result) d = JSON.parse(result);
-//     if (typeof d === "object") cb(d);
-//   });
-// }
+let notepad = document.querySelector(".notepad");
 
 // Set color scheme and font preference.
 function checkPreferences() {
@@ -90,22 +56,12 @@ const months = [
   "December",
 ];
 
-// Read and load data from sync
-// readStore((d) => {
-//   let data;
-
-//   // Check if we got data from sync storage
-//   if (d) {
-//     data = d;
-//     start(data);
-//   }
-// });
-
 function listenerUpdate() {
-  document.querySelector(".notepad").textContent = initialNotepadContent;
+  if (notepadContent) notepad.textContent = notepadContent;
+  else return;
 }
 
-function start(data) {
+function start() {
   // Determine and format date & time of day
   let now = new Date();
   let timeString = `${weekdays[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}`;
@@ -114,6 +70,7 @@ function start(data) {
   if (now.getTimezoneOffset() !== 0 && timezoneOffset !== 0) {
     timezoneOffset = now.getTimezoneOffset();
   }
+
   let roughHours = now.getHours() + timezoneOffset;
   let broadTime = roughHours < 12 ? "morning" : roughHours > 17 ? "evening" : "afternoon";
 
@@ -121,51 +78,40 @@ function start(data) {
   g.textContent = `Good ${broadTime}. Today is ${timeString}.`;
 
   // Set up the notepad
-  let notepad = document.querySelector(".notepad");
-  notepad.textContent = data["notepadContent"];
+  notepad.textContent = initialNotepadContent;
+}
 
-  notepad.addEventListener("input", (e) => {
-    if (notepad !== document.activeElement || !windowIsActive) return;
-    let obj = Object.assign(data, {
-      notepadContent: notepad.value,
-    });
+// Allow updating content between tabs
+let windowIsActive;
+let storeListener = setInterval(listenerUpdate, 1000);
 
-    updateStore(obj);
-  });
+window.onfocus = function () {
+  windowIsActive = true;
+};
 
-  // Allow updating content between tabs
-  let windowIsActive;
-
-  let storeListener = setInterval(listenerUpdate, 1000);
-
-  window.onfocus = function () {
-    windowIsActive = true;
-  };
-
-  window.onblur = function () {
-    windowIsActive = false;
-    if (storeListener) {
-      clearInterval(storeListener);
-    }
-    storeListener = setInterval(listenerUpdate, 1000);
-  };
-
-  notepad.addEventListener("blur", (e) => {
-    if (storeListener) {
-      clearInterval(storeListener);
-    }
-    storeListener = setInterval(listenerUpdate, 1000);
-  });
-
-  notepad.addEventListener("focus", (e) => {
-    if (storeListener) {
-      clearInterval(storeListener);
-    }
-  });
-
-  window.addEventListener("mousewheel", scrollCapture);
-
-  function scrollCapture(e) {
-    if (e.target !== notepad) notepad.scrollTop += e.deltaY;
+window.onblur = function () {
+  windowIsActive = false;
+  if (storeListener) {
+    clearInterval(storeListener);
   }
+  storeListener = setInterval(listenerUpdate, 1000);
+};
+
+notepad.addEventListener("blur", (e) => {
+  if (storeListener) {
+    clearInterval(storeListener);
+  }
+  storeListener = setInterval(listenerUpdate, 1000);
+});
+
+notepad.addEventListener("focus", (e) => {
+  if (storeListener) {
+    clearInterval(storeListener);
+  }
+});
+
+// Capture scrolling
+window.addEventListener("mousewheel", scrollCapture);
+function scrollCapture(e) {
+  if (e.target !== notepad) notepad.scrollTop += e.deltaY;
 }
