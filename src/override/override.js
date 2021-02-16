@@ -21,16 +21,16 @@ getting.then((result) => {
 });
 
 // Define global functions
-function updateStore(storeKey, data) {
+function updateStore(data) {
   let obj = {};
-  obj[storeKey] = JSON.stringify(data);
+  obj = JSON.stringify(data);
   browser.storage.sync.set(obj);
 }
 
-function readStore(storeKey, cb) {
+function readStore(cb) {
   browser.storage.sync.get((result) => {
     let d = null;
-    if (result[storeKey]) d = JSON.parse(result[storeKey]);
+    if (result) d = JSON.parse(result);
     if (typeof d === "object") cb(d);
   });
 }
@@ -95,10 +95,8 @@ const months = [
   "December",
 ];
 
-const key = "rhugtkeldibnridrlerlgcrrdvneevit";
-
 // Read and load data from sync
-readStore(key, (d) => {
+readStore((d) => {
   let data;
 
   // Check if we got data from sync storage
@@ -109,7 +107,7 @@ readStore(key, (d) => {
 });
 
 function listenerUpdate() {
-  readStore(key, (d) => {
+  readStore((d) => {
     document.querySelector(".notepad").textContent = d.notepadContent;
   });
 }
@@ -140,7 +138,7 @@ function start(data) {
       notepadContent: notepad.value,
     });
 
-    updateStore(key, obj);
+    updateStore(obj);
   });
 
   // Allow updating content between tabs
