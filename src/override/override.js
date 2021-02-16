@@ -6,6 +6,20 @@
 
 // Updated by @bost-ty, 2020, for Firefox
 
+// Get Options from sync storage
+const getting = browser.storage.sync.get();
+
+getting.then((result) => {
+  if (getting) {
+    timezoneOffset = parseInt(result.timezone);
+    colorPreference = result.colorPreference;
+    fontPreference = result.fontPreference;
+    checkPreferences();
+  } else {
+    console.error("Could not fetch from browser sync storage");
+  }
+});
+
 // Define global functions
 function updateStore(storeKey, data) {
   let obj = {};
@@ -62,18 +76,6 @@ function checkPreferences() {
   else if (fontPreference == "sans") rootStyles.style.setProperty("--fontStack", sans);
   else if (fontPreference == "mono") rootStyles.style.setProperty("--fontStack", mono);
 }
-
-// Get Options from sync storage
-const getting = browser.storage.sync.get();
-
-getting.then((result) => {
-  if (getting) {
-    timezoneOffset = parseInt(result.timezone);
-    colorPreference = result.colorPreference;
-    fontPreference = result.fontPreference;
-    checkPreferences();
-  }
-});
 
 // Constants
 const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
