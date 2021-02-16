@@ -14,7 +14,8 @@ let fontPreference;
 let initialNotepadContent;
 
 // On page load, get preferences from storage
-document.onload = function () {
+window.onload = function () {
+  console.log("window onload called");
   let getting = browser.storage.sync.get();
   getting.then((result) => {
     if (getting) {
