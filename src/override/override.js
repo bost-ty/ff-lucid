@@ -31,11 +31,9 @@ document.onload = function () {
 
 // Define global functions
 function updateStore(data) {
-  browser.storage.sync.set({
-    timezone: timezoneOffset.value,
-    colorPreference: colorPreference,
-    fontPreference: fontPreference,
-    notepadContent: notepad.textContent,
+  let getting = browser.storage.sync.get();
+  getting.then((result) => {
+    browser.storage.sync.set({ ...result, notepadContent: notepad.textContent });
   });
 }
 
