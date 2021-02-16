@@ -1,10 +1,12 @@
 // @bost-ty, 2020, FFLucid
 
+// Initialize DOM control variables
 const optionsForm = document.querySelector(".options-form");
 const timezoneOffset = optionsForm.querySelector("#timezone-offset");
 const colorRadios = optionsForm.querySelectorAll("input[name='color-scheme']");
 const fontRadios = optionsForm.querySelectorAll("input[name='font']");
 
+// Initialize settings variables
 let colorPreference;
 let fontPreference;
 
