@@ -16,7 +16,7 @@ getting.then((result) => {
     fontPreference = result.fontPreference;
     checkPreferences();
   } else {
-    console.error("Could not fetch from browser sync storage");
+    console.error("Could not fetch from browser sync storage!");
   }
 });
 
