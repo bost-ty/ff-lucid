@@ -12,6 +12,7 @@ let colorPreference;
 let fontPreference;
 
 let initialNotepadContent;
+let notepadContent;
 
 let notepad = document.querySelector(".notepad");
 
