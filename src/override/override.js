@@ -4,7 +4,39 @@
 // To focus, clarity, rest, and joy
 // Which, I hope, you find in this toy
 
-// Updated @bost_ty, 2020, for Firefox
+// Updated by @bost-ty, 2020, for Firefox
+
+// Define global functions
+function updateStore(storeKey, data) {
+  let obj = {};
+  obj[storeKey] = JSON.stringify(data);
+  browser.storage.sync.set(obj);
+}
+
+function readStore(storeKey, cb) {
+  browser.storage.sync.get((result) => {
+    let d = null;
+    if (result[storeKey]) d = JSON.parse(result[storeKey]);
+    if (typeof d === "object") cb(d);
+  });
+}
+
+function restoreOptions() {
+  let getting = browser.storage.sync.get();
+  getting.then((result) => {
+    if (getting) {
+      timezoneOffset.value = result.timezone;
+      colorPreference = result.colorPreference;
+      fontPreference = result.fontPreference;
+      checkPreferences();
+    }
+  });
+}
+
+// Initialize settings variables
+let timezoneOffset;
+let colorPreference;
+let fontPreference;
 
 // Set color scheme and font preference.
 function checkPreferences() {
@@ -31,28 +63,8 @@ function checkPreferences() {
   else if (fontPreference == "mono") rootStyles.style.setProperty("--fontStack", mono);
 }
 
-// Define global functions
-function updateStore(storeKey, data) {
-  let obj = {};
-  obj[storeKey] = JSON.stringify(data);
-  browser.storage.sync.set(obj);
-}
-
-function readStore(storeKey, cb) {
-  browser.storage.sync.get((result) => {
-    let d = null;
-    if (result[storeKey]) d = JSON.parse(result[storeKey]);
-    if (typeof d === "object") cb(d);
-  });
-}
-
 // Get Options from sync storage
 const getting = browser.storage.sync.get();
-
-// Initalize settings variables
-let timezoneOffset;
-let colorPreference;
-let fontPreference;
 
 getting.then((result) => {
   if (getting) {
