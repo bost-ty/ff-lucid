@@ -14,20 +14,21 @@ let fontPreference;
 let initialNotepadContent;
 
 // Get Options from sync storage
-const getting = browser.storage.sync.get();
-
-getting.then((result) => {
-  if (getting) {
-    console.log(result);
-    timezoneOffset = parseInt(result.timezone);
-    colorPreference = result.colorPreference;
-    fontPreference = result.fontPreference;
-    initialNotepadContent = result.obj;
-    checkPreferences();
-  } else {
-    console.error("Could not fetch from browser sync storage!");
-  }
-});
+document.onload = function () {
+  let getting = browser.storage.sync.get();
+  getting.then((result) => {
+    if (getting) {
+      console.log(result);
+      timezoneOffset = parseInt(result.timezone);
+      colorPreference = result.colorPreference;
+      fontPreference = result.fontPreference;
+      initialNotepadContent = result.obj;
+      checkPreferences();
+    } else {
+      console.error("Could not fetch from browser sync storage!");
+    }
+  });
+};
 
 // Define global functions
 function updateStore(data) {
@@ -70,11 +71,9 @@ function checkPreferences() {
   } else if (colorPreference == "light") {
     rootStyles.style.setProperty("--foreground", dark);
     rootStyles.style.setProperty("--background", light);
-    if (colorRadios) colorRadios[1].checked = true;
   } else if (colorPreference == "dark") {
     rootStyles.style.setProperty("--foreground", light);
     rootStyles.style.setProperty("--background", dark);
-    if (colorRadios) colorRadios[0].checked = true;
   }
   if (!fontPreference) rootStyles.style.setProperty("--fontStack", mono);
   else if (fontPreference == "sans") rootStyles.style.setProperty("--fontStack", sans);
