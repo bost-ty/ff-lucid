@@ -13,7 +13,7 @@ let fontPreference;
 
 let initialNotepadContent;
 
-// Get Options from sync storage
+// On page load, get preferences from storage
 document.onload = function () {
   let getting = browser.storage.sync.get();
   getting.then((result) => {
