@@ -22,7 +22,6 @@ document.onload = function () {
       timezoneOffset = parseInt(result.timezone);
       colorPreference = result.colorPreference;
       fontPreference = result.fontPreference;
-      initialNotepadContent = result.obj;
       checkPreferences();
     } else {
       console.error("Could not fetch from browser sync storage!");
@@ -32,9 +31,12 @@ document.onload = function () {
 
 // Define global functions
 function updateStore(data) {
-  let obj = {};
-  obj = JSON.stringify(data);
-  browser.storage.sync.set(obj);
+  browser.storage.sync.set({
+    timezone: timezoneOffset.value,
+    colorPreference: colorPreference,
+    fontPreference: fontPreference,
+    notepadContent: notepad.textContent,
+  });
 }
 
 function readStore(cb) {
@@ -136,7 +138,6 @@ function start(data) {
 
   notepad.addEventListener("input", (e) => {
     if (notepad !== document.activeElement || !windowIsActive) return;
-
     let obj = Object.assign(data, {
       notepadContent: notepad.value,
     });
