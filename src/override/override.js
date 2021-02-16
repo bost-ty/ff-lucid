@@ -13,7 +13,7 @@ let fontPreference;
 
 let initialNotepadContent;
 
-// On page load, get preferences from storage
+// On page load, get from storage
 window.onload = function () {
   console.log("window onload called");
   let getting = browser.storage.sync.get();
@@ -23,6 +23,7 @@ window.onload = function () {
       timezoneOffset = parseInt(result.timezone);
       colorPreference = result.colorPreference;
       fontPreference = result.fontPreference;
+      initialNotepadContent = result.notepadContent;
       checkPreferences();
     } else {
       console.error("Could not fetch from browser sync storage!");
@@ -30,33 +31,23 @@ window.onload = function () {
   });
 };
 
+console.log(initialNotepadContent);
+
 // Define global functions
-function updateStore(data) {
-  let getting = browser.storage.sync.get();
-  getting.then((result) => {
-    browser.storage.sync.set({ ...result, notepadContent: notepad.textContent });
-  });
-}
+// function updateStore(data) {
+//   let getting = browser.storage.sync.get();
+//   getting.then((result) => {
+//     browser.storage.sync.set({ ...result, notepadContent: notepad.textContent });
+//   });
+// }
 
-function readStore(cb) {
-  browser.storage.sync.get((result) => {
-    let d = null;
-    if (result) d = JSON.parse(result);
-    if (typeof d === "object") cb(d);
-  });
-}
-
-function restoreOptions() {
-  let getting = browser.storage.sync.get();
-  getting.then((result) => {
-    if (getting) {
-      timezoneOffset.value = result.timezone;
-      colorPreference = result.colorPreference;
-      fontPreference = result.fontPreference;
-      checkPreferences();
-    }
-  });
-}
+// function readStore(cb) {
+//   browser.storage.sync.get((result) => {
+//     let d = null;
+//     if (result) d = JSON.parse(result);
+//     if (typeof d === "object") cb(d);
+//   });
+// }
 
 // Set color scheme and font preference.
 function checkPreferences() {
@@ -100,20 +91,18 @@ const months = [
 ];
 
 // Read and load data from sync
-readStore((d) => {
-  let data;
+// readStore((d) => {
+//   let data;
 
-  // Check if we got data from sync storage
-  if (d) {
-    data = d;
-    start(data);
-  }
-});
+//   // Check if we got data from sync storage
+//   if (d) {
+//     data = d;
+//     start(data);
+//   }
+// });
 
 function listenerUpdate() {
-  readStore((d) => {
-    document.querySelector(".notepad").textContent = d.notepadContent;
-  });
+  document.querySelector(".notepad").textContent = initialNotepadContent;
 }
 
 function start(data) {
