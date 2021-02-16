@@ -16,6 +16,10 @@ _Why is the time/date/color scheme wrong?_
 
 If enabled, Firefox's anti-fingerprinting settings prevent access to accurate `Date()` timezone offset (defaults to UTC, which has a `Date().getTimezoneOffset()` of 0) and `prefers-color-scheme` media queries (defaults to light). For these cases, users can easily set their preferred font, color scheme, and timezone through the add-on's options page. This will require you to know your current timezone offset. Please [search online](https://duckduckgo.com) if you don't know it.
 
+_Why isn't my notepad saving?_
+
+This issue is currently being investigated. If you don't have a Firefox account with sync and extension sync enabled, your notepad content and other settings cannot be saved. Please see the open issue on GitHub for more information and troubleshooting steps.
+
 _A feature isn't working! Something is broken!_
 
 I believe you. Please submit an issue on [GitHub](https://github.com/bost-ty/firefox-lucid/issues) to make me aware.
