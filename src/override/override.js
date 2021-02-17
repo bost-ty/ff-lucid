@@ -11,10 +11,9 @@ let timezoneOffset;
 let colorPreference;
 let fontPreference;
 
+let notepad = document.querySelector(".notepad");
 let initialNotepadContent;
 let notepadContent;
-
-let notepad = document.querySelector(".notepad");
 
 // Set color scheme and font preference.
 function checkPreferences() {
