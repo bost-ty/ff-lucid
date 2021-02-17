@@ -11,6 +11,8 @@ let timezoneOffset;
 let colorPreference;
 let fontPreference;
 
+let syncObject = {};
+
 let notepad = document.querySelector(".notepad");
 let initialNotepadContent = "";
 let notepadContent;
@@ -19,13 +21,14 @@ let notepadContent;
 function restoreOptions() {
   let getting = browser.storage.sync.get();
   getting.then((result) => {
+    syncObject = result;
     if (getting) {
       timezoneOffset = result.timezone;
       colorPreference = result.colorPreference;
       fontPreference = result.fontPreference;
       notepadContent = result.notepadContent;
-      checkPreferences();
       start();
+      console.log(syncObject);
     }
   });
 }
@@ -73,18 +76,10 @@ const months = [
 
 function listenerUpdate() {
   notepadContent = notepad.textContent;
-  if (notepadContent !== null) {
-    notepad.textContent = notepadContent;
-
-    console.log("Setting...");
-    browser.storage.sync.set({
-      notepadContent: notepadContent,
-    });
-    console.log("Set!");
-  }
 }
 
 function start() {
+  checkPreferences();
   // Determine and format date & time of day
   let now = new Date();
   let timeString = `${weekdays[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}`;
@@ -101,7 +96,6 @@ function start() {
   greeting.textContent = `Good ${broadTime}. Today is ${timeString}.`;
 
   // Set up the notepad
-  notepad.textContent = initialNotepadContent;
   notepad.textContent = notepadContent;
 }
 
