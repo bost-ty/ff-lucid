@@ -25,8 +25,7 @@ function restoreOptions() {
       fontPreference = result.fontPreference;
       checkPreferences();
       start();
-    } else {
-      console.log("No getting available.");
+      console.log(timezoneOffset);
     }
   });
 }
