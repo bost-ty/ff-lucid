@@ -12,7 +12,7 @@ let colorPreference;
 let fontPreference;
 
 let notepad = document.querySelector(".notepad");
-let initialNotepadContent;
+let initialNotepadContent = "Write something.";
 let notepadContent;
 
 // Set color scheme and font preference.
@@ -57,8 +57,8 @@ const months = [
 ];
 
 function listenerUpdate() {
-  if (notepadContent) notepad.textContent = notepadContent;
-  else return;
+  if (notepadContent !== null) notepad.textContent = notepadContent;
+  console.log(notepad, notepadContent);
 }
 
 function start() {
