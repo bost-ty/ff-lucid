@@ -23,6 +23,7 @@ function restoreOptions() {
       timezoneOffset = result.timezone;
       colorPreference = result.colorPreference;
       fontPreference = result.fontPreference;
+      notepadContent = result.notepadContent;
       checkPreferences();
       start();
     }
