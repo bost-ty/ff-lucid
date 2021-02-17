@@ -15,6 +15,20 @@ let notepad = document.querySelector(".notepad");
 let initialNotepadContent = "Write something.";
 let notepadContent;
 
+// Restore options on load
+function restoreOptions() {
+  let getting = browser.storage.sync.get();
+  getting.then((result) => {
+    if (getting) {
+      timezoneOffset = result.timezone;
+      colorPreference = result.colorPreference;
+      fontPreference = result.fontPreference;
+      checkPreferences();
+      start();
+    }
+  });
+}
+
 // Set color scheme and font preference.
 function checkPreferences() {
   const rootStyles = document.documentElement;
@@ -60,7 +74,7 @@ function listenerUpdate() {
   if (notepadContent !== null) notepad.textContent = notepadContent;
 }
 
-const start = () => {
+function start() {
   // Determine and format date & time of day
   let now = new Date();
   let timeString = `${weekdays[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}`;
@@ -73,12 +87,12 @@ const start = () => {
   let roughHours = now.getHours() + timezoneOffset;
   let broadTime = roughHours < 12 ? "morning" : roughHours > 17 ? "evening" : "afternoon";
 
-  let g = document.querySelector(".greeting");
-  g.textContent = `Good ${broadTime}. Today is ${timeString}.`;
+  let greeting = document.querySelector(".greeting");
+  greeting.textContent = `Good ${broadTime}. Today is ${timeString}.`;
 
   // Set up the notepad
   notepad.textContent = initialNotepadContent;
-};
+}
 
 // Allow updating content between tabs
 let windowIsActive;
@@ -114,3 +128,6 @@ window.addEventListener("mousewheel", scrollCapture);
 function scrollCapture(e) {
   if (e.target !== notepad) notepad.scrollTop += e.deltaY;
 }
+
+// Event listeners
+document.addEventListener("DOMContentLoaded", restoreOptions);
