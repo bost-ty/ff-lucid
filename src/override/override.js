@@ -93,6 +93,7 @@ function start() {
 
   // Set up the notepad
   notepad.textContent = initialNotepadContent;
+  notepad.textContent = notepadContent;
 }
 
 // Allow updating content between tabs
