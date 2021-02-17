@@ -12,7 +12,7 @@ let colorPreference;
 let fontPreference;
 
 let notepad = document.querySelector(".notepad");
-let initialNotepadContent = "Write something.";
+let initialNotepadContent = "";
 let notepadContent;
 
 // Restore options on load
@@ -25,7 +25,6 @@ function restoreOptions() {
       fontPreference = result.fontPreference;
       checkPreferences();
       start();
-      console.log(timezoneOffset);
     }
   });
 }
