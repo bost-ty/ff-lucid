@@ -58,10 +58,9 @@ const months = [
 
 function listenerUpdate() {
   if (notepadContent !== null) notepad.textContent = notepadContent;
-  console.log(notepad, notepadContent);
 }
 
-function start() {
+const start = () => {
   // Determine and format date & time of day
   let now = new Date();
   let timeString = `${weekdays[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}`;
@@ -79,11 +78,11 @@ function start() {
 
   // Set up the notepad
   notepad.textContent = initialNotepadContent;
-}
+};
 
 // Allow updating content between tabs
 let windowIsActive;
-let storeListener = setInterval(listenerUpdate, 1000);
+let storeListener = setInterval(listenerUpdate, 2000);
 
 window.onfocus = function () {
   windowIsActive = true;
@@ -94,14 +93,14 @@ window.onblur = function () {
   if (storeListener) {
     clearInterval(storeListener);
   }
-  storeListener = setInterval(listenerUpdate, 1000);
+  storeListener = setInterval(listenerUpdate, 2000);
 };
 
 notepad.addEventListener("blur", (e) => {
   if (storeListener) {
     clearInterval(storeListener);
   }
-  storeListener = setInterval(listenerUpdate, 1000);
+  storeListener = setInterval(listenerUpdate, 2000);
 });
 
 notepad.addEventListener("focus", (e) => {
