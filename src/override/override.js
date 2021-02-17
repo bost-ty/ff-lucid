@@ -73,6 +73,9 @@ const months = [
 
 function listenerUpdate() {
   if (notepadContent !== null) notepad.textContent = notepadContent;
+  browser.storage.sync.set({
+    notepadContent: notepadContent,
+  });
 }
 
 function start() {
