@@ -72,10 +72,16 @@ const months = [
 ];
 
 function listenerUpdate() {
-  if (notepadContent !== null) notepad.textContent = notepadContent;
-  browser.storage.sync.set({
-    notepadContent: notepadContent,
-  });
+  notepadContent = notepad.textContent;
+  if (notepadContent !== null) {
+    notepad.textContent = notepadContent;
+
+    console.log("Setting...");
+    browser.storage.sync.set({
+      notepadContent: notepadContent,
+    });
+    console.log("Set!");
+  }
 }
 
 function start() {
@@ -101,7 +107,7 @@ function start() {
 
 // Allow updating content between tabs
 let windowIsActive;
-let storeListener = setInterval(listenerUpdate, 2000);
+let storeListener = setInterval(listenerUpdate, 1000);
 
 window.onfocus = function () {
   windowIsActive = true;
@@ -112,14 +118,14 @@ window.onblur = function () {
   if (storeListener) {
     clearInterval(storeListener);
   }
-  storeListener = setInterval(listenerUpdate, 2000);
+  storeListener = setInterval(listenerUpdate, 1000);
 };
 
 notepad.addEventListener("blur", (e) => {
   if (storeListener) {
     clearInterval(storeListener);
   }
-  storeListener = setInterval(listenerUpdate, 2000);
+  storeListener = setInterval(listenerUpdate, 1000);
 });
 
 notepad.addEventListener("focus", (e) => {
