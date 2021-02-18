@@ -48,9 +48,19 @@ function checkPreferences() {
   else if (fontPreference == "mono") rootStyles.style.setProperty("--fontStack", mono);
 }
 
+// clear saved options
+const clearButton = document.querySelector("#clearSync");
+clearButton.addEventListener("click", clearSync);
+
+function clearSync() {
+  browser.storage.sync.clear();
+  console.log("Cleared");
+}
+
 // Save on submit
 function saveOptions(e) {
   e.preventDefault();
+
   for (const rb of colorRadios) {
     if (rb.checked) {
       colorPreference = rb.value;
