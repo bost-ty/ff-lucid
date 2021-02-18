@@ -13,10 +13,9 @@ let fontPreference;
 
 // Initialize notepad variables
 let notepad = document.querySelector(".notepad");
-let initialNotepadContent = "";
-let notepadContent = notepad.textContent;
+let notepadContent;
 
-// Restore options on load
+// Restore synced information, called on load
 function restoreOptions() {
   let getting = browser.storage.sync.get();
   console.log(getting);
@@ -25,7 +24,8 @@ function restoreOptions() {
       timezoneOffset = result.timezone;
       colorPreference = result.colorPreference;
       fontPreference = result.fontPreference;
-      notepad.textContent = result.test;
+      notepadContent = result.savedNotes;
+      notepad.textContent = notepadContent;
       start();
     }
   });
@@ -73,8 +73,9 @@ const months = [
 ];
 
 function syncNotepad() {
+  notepadContent = notepad.value;
   browser.storage.sync.set({
-    savedNotes: notepad.textContent,
+    savedNotes: notepadContent,
   });
 }
 
@@ -100,7 +101,11 @@ function start() {
   greeting.textContent = `Good ${broadTime}. Today is ${timeString}.`;
 
   // Set up the notepad
-  notepad.textContent = notepadContent;
+  if (notepadContent) {
+    notepad.value = notepadContent;
+  } else {
+    notepad.value = "";
+  }
 }
 
 // Allow updating content between tabs
