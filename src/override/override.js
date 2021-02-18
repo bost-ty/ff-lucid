@@ -11,24 +11,22 @@ let timezoneOffset;
 let colorPreference;
 let fontPreference;
 
-let syncObject = {};
-
+// Initialize notepad variables
 let notepad = document.querySelector(".notepad");
 let initialNotepadContent = "";
-let notepadContent;
+let notepadContent = notepad.textContent;
 
 // Restore options on load
 function restoreOptions() {
   let getting = browser.storage.sync.get();
+  console.log(getting);
   getting.then((result) => {
-    syncObject = result;
     if (getting) {
       timezoneOffset = result.timezone;
       colorPreference = result.colorPreference;
       fontPreference = result.fontPreference;
-      notepadContent = result.notepadContent;
+      notepad.textContent = result.test;
       start();
-      console.log(syncObject);
     }
   });
 }
@@ -74,8 +72,14 @@ const months = [
   "December",
 ];
 
+function syncNotepad() {
+  browser.storage.sync.set({
+    savedNotes: notepad.textContent,
+  });
+}
+
 function listenerUpdate() {
-  notepadContent = notepad.textContent;
+  syncNotepad();
 }
 
 function start() {
