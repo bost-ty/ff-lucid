@@ -7,19 +7,23 @@
 **Using the official Firefox Add-Ons Library:**
 
 1. Go to [the product page](https://addons.mozilla.org/en-US/firefox/addon/ff-lucid/).
-2. Install the addon as usual.
-3. Open a new tab or your homepage (may require a reload of your browser) and start writing!
+2. Install the add-on as usual.
+3. Open a new tab or your homepage (which may require a reload of your browser) and do your thing.
 
 ### Help!
 
 _Why is the time/date/color scheme wrong?_
 
-If enabled, Firefox's anti-fingerprinting settings prevent access to accurate `Date()` timezone offset (defaults to UTC, which has a `Date().getTimezoneOffset()` of 0) and `prefers-color-scheme` media queries (defaults to light). For these cases, users can easily set their preferred font, color scheme, and timezone through the add-on's options page. This will require you to know your current timezone offset. Please [search online](https://duckduckgo.com) if you don't know it.
+If enabled, Firefox's anti-fingerprinting settings prevent access to accurate `Date()` timezone offset (defaults to UTC, which has a `Date().getTimezoneOffset()` of 0) and `prefers-color-scheme` media queries (defaults to light). For these cases, users can quickly set their preferred font, color scheme, and timezone through the add-on options page (type `about:addons` in your address bar to quickly get there). This will require you to know your current timezone offset. Don't know your timezone offset? [Search online](https://duckduckgo.com) and you'll have it.
 
-_A feature isn't working! Something is broken!_
+_Why isn't my notepad saving?_
 
-I believe you. Please submit an issue on [GitHub](https://github.com/bost-ty/firefox-lucid/issues) to make me aware.
+This extension relies on Firefox Sync to save and sync your notepad. If you don't have a Firefox account with sync and extension sync enabled, your notepad content and other settings cannot be saved. Please see the issue on GitHub for more information and troubleshooting steps.
+
+_A feature isn't working! Something is broken! What's the deal with [blank]?_
+
+Thanks for letting me know! Please [submit an issue on GitHub](https://github.com/bost-ty/firefox-lucid/issues) with your specifics so we can fix it.
 
 ### **Thank you!**
 
-A big shoutout to [Daniel Eden](https://github.com/daneden) for creating the original Lucid New Tab and allowing me to port his code over to Firefox. Thanks Dan!
+A big shout-out to [Daniel Eden](https://github.com/daneden) for creating the original Lucid New Tab and allowing me to port his code over to Firefox. Thanks Dan!

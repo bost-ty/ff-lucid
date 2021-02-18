@@ -1,10 +1,12 @@
 // @bost-ty, 2020, FFLucid
 
+// Initialize DOM control variables
 const optionsForm = document.querySelector(".options-form");
 const timezoneOffset = optionsForm.querySelector("#timezone-offset");
 const colorRadios = optionsForm.querySelectorAll("input[name='color-scheme']");
 const fontRadios = optionsForm.querySelectorAll("input[name='font']");
 
+// Initialize settings variables
 let colorPreference;
 let fontPreference;
 
@@ -46,9 +48,19 @@ function checkPreferences() {
   else if (fontPreference == "mono") rootStyles.style.setProperty("--fontStack", mono);
 }
 
+// clear saved options
+const clearButton = document.querySelector("#clearSync");
+clearButton.addEventListener("click", clearSync);
+
+function clearSync() {
+  browser.storage.sync.clear();
+  console.log("Cleared");
+}
+
 // Save on submit
 function saveOptions(e) {
   e.preventDefault();
+
   for (const rb of colorRadios) {
     if (rb.checked) {
       colorPreference = rb.value;
