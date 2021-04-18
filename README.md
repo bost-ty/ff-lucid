@@ -18,7 +18,7 @@ If enabled, Firefox's anti-fingerprinting settings prevent access to accurate `D
 
 _Why isn't my notepad saving?_
 
-This extension relies on Firefox Sync to save and sync your notepad. If you don't have a Firefox account with sync and extension sync enabled, your notepad content and other settings cannot be saved. Please see the issue on GitHub for more information and troubleshooting steps.
+This extension relies on Firefox Sync to save (and sync!) your notepad. If you don't have a Firefox account with Sync and Extension Sync enabled, your notepad content and other settings cannot be saved. Please see the (now closed) Sync issue on GitHub for more information and troubleshooting steps.
 
 _A feature isn't working! Something is broken! What's the deal with [blank]?_
 
