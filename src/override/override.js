@@ -8,7 +8,7 @@
 
 // Initialize settings variables
 let timezoneOffset;
-let timezoneOffsetHours = timezoneOffset / 60 || 0;
+let timezoneOffsetHours;
 let colorPreference;
 let fontPreference;
 
@@ -27,6 +27,8 @@ function restoreOptions() {
       notepadContent = result.savedNotes;
       notepad.textContent = notepadContent;
       start();
+    } else {
+      console.error("Could not retrieve options from sync storage.");
     }
   });
 }
@@ -80,26 +82,24 @@ function syncNotepad() {
 }
 
 function listenerUpdate() {
-  // Functions separated in case more is added to listenerUpdate in future
   syncNotepad();
 }
 
 function start() {
   checkPreferences();
 
-  //FIXME:
-  console.log(timezoneOffset, timezoneOffsetHours);
-
   // Determine and format date & time of day
   let now = new Date();
   let timeString = `${weekdays[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}`;
 
-  // If none storeud, use stored Date's timezone offset (in minutes)
   if (!timezoneOffset) {
     timezoneOffset = now.getTimezoneOffset();
+    timezoneOffsetHours = timezoneOffset / 60;
   }
 
-  let roughHours = now.getHours() + timezoneOffset;
+  console.log(now.getHours());
+  let roughHours = now.getHours() + timezoneOffsetHours;
+  console.log(roughHours);
   let broadTime = roughHours < 12 ? "morning" : roughHours > 17 ? "evening" : "afternoon";
 
   let greeting = document.querySelector(".greeting");
@@ -149,4 +149,6 @@ function scrollCapture(e) {
 }
 
 // Event listeners
-document.addEventListener("DOMContentLoaded", restoreOptions);
+document.addEventListener("DOMContentLoaded", function () {
+  restoreOptions();
+});
