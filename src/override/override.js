@@ -33,7 +33,6 @@ function restoreOptions() {
       if (result.colorPreference) colorPreference = result.colorPreference;
       if (result.fontPreference) fontPreference = result.fontPreference;
       if (result.savedNotes) savedNotes = result.savedNotes;
-      // notepad.textContent = savedNotes;
       start();
     } else {
       console.error("Could not retrieve options from sync storage.");
