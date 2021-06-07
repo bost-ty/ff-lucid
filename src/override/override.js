@@ -8,6 +8,7 @@
 
 // Initialize settings variables
 let timezoneOffset;
+let timezoneOffsetHours = timezoneOffset / 60 || 0;
 let colorPreference;
 let fontPreference;
 
@@ -18,7 +19,6 @@ let notepadContent;
 // Restore synced information, called on load
 function restoreOptions() {
   let getting = browser.storage.sync.get();
-  console.log(getting);
   getting.then((result) => {
     if (getting) {
       timezoneOffset = result.timezone;
@@ -80,17 +80,22 @@ function syncNotepad() {
 }
 
 function listenerUpdate() {
+  // Functions separated in case more is added to listenerUpdate in future
   syncNotepad();
 }
 
 function start() {
   checkPreferences();
+
+  //FIXME:
+  console.log(timezoneOffset, timezoneOffsetHours);
+
   // Determine and format date & time of day
   let now = new Date();
   let timeString = `${weekdays[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}`;
 
-  // Check for timezoneOffset
-  if (!timezoneOffset || now.getTimezoneOffset() || timezoneOffset !== now.getTimezoneOffset) {
+  // If none storeud, use stored Date's timezone offset (in minutes)
+  if (!timezoneOffset) {
     timezoneOffset = now.getTimezoneOffset();
   }
 
