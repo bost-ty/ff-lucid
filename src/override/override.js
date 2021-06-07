@@ -128,9 +128,8 @@ function start() {
 }
 
 /* 
-  Allow updating content between tabs; speed could be improved.
-  Currently, unfocusing the notepad element is required for a fast update when opening another new tab.
-  This would be an uncommon use case (updating in one tab, then opening another new tab right away)
+  Allow updating content between tabs.
+  When notepad is focused, sync is updated every second. It is not yet clear if this is a performance issue.
 */
 let windowIsActive;
 let storeListener = setInterval(listenerUpdate, 1000);
