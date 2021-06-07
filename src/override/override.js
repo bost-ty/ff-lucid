@@ -12,23 +12,28 @@ let timezoneOffsetHours;
 let colorPreference;
 let fontPreference;
 
+// Testing
+
+let promiseLoaded = false;
+
 // Initialize notepad variables
 let notepad = document.querySelector(".notepad");
-let notepadContent;
+let savedNotes;
 
 // Restore synced information, called on load
 function restoreOptions() {
   let getting = browser.storage.sync.get();
   getting.then((result) => {
     if (getting) {
-      timezoneOffset = result.timezone;
-      colorPreference = result.colorPreference;
-      fontPreference = result.fontPreference;
-      notepadContent = result.savedNotes;
-      notepad.textContent = notepadContent;
+      if (result.timezone) timezoneOffset = result.timezone;
+      if (result.colorPreference) colorPreference = result.colorPreference;
+      if (result.fontPreference) fontPreference = result.fontPreference;
+      if (result.savedNotes) savedNotes = result.savedNotes;
+      notepad.textContent = savedNotes;
       start();
     } else {
       console.error("Could not retrieve options from sync storage.");
+      console.error("Log in to Firefox or enable extension sync in order to use this addon.");
     }
   });
 }
@@ -75,9 +80,9 @@ const months = [
 ];
 
 function syncNotepad() {
-  notepadContent = notepad.value;
+  savedNotes = notepad.value;
   browser.storage.sync.set({
-    savedNotes: notepadContent,
+    savedNotes: savedNotes,
   });
 }
 
@@ -92,28 +97,35 @@ function start() {
   let now = new Date();
   let timeString = `${weekdays[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}`;
 
-  if (!timezoneOffset) {
-    timezoneOffset = now.getTimezoneOffset();
+  // If timezoneOffset isn't available from sync storage, use the Date object's in place.
+  if (timezoneOffset === undefined || timezoneOffset === null) {
+    /* Flip the sign and convert minutes to hours,
+       due to how Date object returns timezone offset */
+    timezoneOffset = now.getTimezoneOffset() * -1;
     timezoneOffsetHours = timezoneOffset / 60;
   }
 
-  console.log(now.getHours());
-  let roughHours = now.getHours() + timezoneOffsetHours;
-  console.log(roughHours);
+  // Create rough time of day
+  let roughHours = now.getHours();
   let broadTime = roughHours < 12 ? "morning" : roughHours > 17 ? "evening" : "afternoon";
 
+  // Create greeting message and populate it.
   let greeting = document.querySelector(".greeting");
   greeting.textContent = `Good ${broadTime}. Today is ${timeString}.`;
 
-  // Set up the notepad
-  if (notepadContent) {
-    notepad.value = notepadContent;
+  // Set up the notepad (duplicates effort from restoreOptions)
+  if (savedNotes) {
+    notepad.value = savedNotes;
   } else {
     notepad.value = "";
   }
 }
 
-// Allow updating content between tabs
+/* 
+  Allow updating content between tabs; speed could be improved.
+  Currently, unfocusing the notepad element is required for a fast update when opening another new tab.
+  This would be an uncommon use case (updating in one tab, then opening another new tab right away)
+*/
 let windowIsActive;
 let storeListener = setInterval(listenerUpdate, 1000);
 
