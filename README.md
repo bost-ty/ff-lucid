@@ -14,13 +14,13 @@
 
 _Why is the time/date/color scheme wrong?_
 
-If enabled, Firefox's anti-fingerprinting settings prevent access to accurate `Date()` timezone offset (defaults to UTC, which has a `Date().getTimezoneOffset()` of 0) and `prefers-color-scheme` media queries (defaults to light). For these cases, users can quickly set their preferred font, color scheme, and timezone through the add-on options page (type `about:addons` in your address bar to quickly get there). This will require you to know your current timezone offset. Don't know your timezone offset? [Search online](https://duckduckgo.com) and you'll have it.
+If enabled, Firefox's anti-fingerprinting settings prevent access to accurate `Date()` timezone offset (defaults to UTC, which has a `Date().getTimezoneOffset()` of 0) and `prefers-color-scheme` media queries (defaults to light). For these cases, users can set their preferred font, color scheme, and timezone through the add-on options page (type `about:addons` in your address bar to get there). This will require you to know your current timezone offset. Don't know your timezone offset? [Search online](https://duckduckgo.com) and you'll have it.
 
 _Why isn't my notepad saving?_
 
-This extension relies on Firefox Sync to save (and sync!) your notepad. If you don't have a Firefox account with Sync and Extension Sync enabled, your notepad content and other settings cannot be saved. Please see the (now closed) Sync issue on GitHub for more information and troubleshooting steps.
+This extension relies on Firefox Sync to save (and sync!) your notepad. If you don't have a Firefox account with Sync and Extension Sync enabled, your notepad content and other settings cannot save. Please see the (now closed) Sync issue on GitHub for more information and troubleshooting steps.
 
-_A feature isn't working! Something is broken! What's the deal with [blank]?_
+_A feature isn't working! Something broke! What's the deal with [blank]?_
 
 Thanks for letting me know! Please [submit an issue on GitHub](https://github.com/bost-ty/firefox-lucid/issues) with your specifics so we can fix it.
 

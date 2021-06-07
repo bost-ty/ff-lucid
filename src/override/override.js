@@ -89,8 +89,8 @@ function start() {
   let now = new Date();
   let timeString = `${weekdays[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}`;
 
-  // Check if offset from Date is non-zero, and if so, use it by default
-  if (now.getTimezoneOffset() !== 0 && timezoneOffset !== 0) {
+  // Check for timezoneOffset
+  if (!timezoneOffset || now.getTimezoneOffset() || timezoneOffset !== now.getTimezoneOffset) {
     timezoneOffset = now.getTimezoneOffset();
   }
 
