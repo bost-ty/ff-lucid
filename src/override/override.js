@@ -108,7 +108,6 @@ function start() {
        due to how Date object returns timezone offset */
     timezoneOffset = now.getTimezoneOffset() * -1;
     timezoneOffsetHours = timezoneOffset / 60;
-    console.log("ERROR");
   }
 
   // Create rough time of day
