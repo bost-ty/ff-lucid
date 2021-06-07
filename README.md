@@ -1,10 +1,28 @@
-# Lucid for Firefox
+<div align="center">
+<h1>Lucid for Firefox</h1>
+<p style="font-size: 1.2em;">Replace your Home & New Tab pages with a simple personal notepad and greeting that includes the date and time of day.</p>
+<img src="https://img.shields.io/github/languages/code-size/bost-ty/firefox-lucid" alt="Code size shield">
+<img src="https://img.shields.io/amo/users/fflucid@fflucid.com" alt="Number of users shield">
+<br />
+<img align="center" src="https://ffp4g1ylyit3jdyti1hqcvtb-wpengine.netdna-ssl.com/addons/files/2015/11/get-the-addon-small.png" alt="Firefox Get the Add-On">
+</div>
 
-**[<img align="right" src="https://addons.cdn.mozilla.net/static/img/addons-buttons/AMO-button_2.png">](https://addons.mozilla.org/firefox/addon/ff-lucid/) Replace your Home & New Tab pages with a simple personal notepad and greeting that includes the date and time of day.**
+<br />
+<hr />
+
+### Table of Contents
+
+- [Installation](#installation)
+  - [_Using the official Firefox Add-Ons Library_](#using-the-official-firefox-add-ons-library)
+- [FAQ](#faq)
+  - [_Why is the time/date/color scheme wrong?_](#why-is-the-timedatecolor-scheme-wrong)
+  - [_Why isn't the notepad saving?_](#why-isnt-the-notepad-saving)
+  - [_A feature isn't working! Something broke! What's the deal with [blank]?_](#a-feature-isnt-working-something-broke-whats-the-deal-with-blank)
+- [Thank you!](#thank-you)
 
 ## Installation
 
-**Using the official Firefox Add-Ons Library:**
+### _Using the official Firefox Add-Ons Library_
 
 1. Go to [the product page](https://addons.mozilla.org/en-US/firefox/addon/ff-lucid/).
 2. Install the add-on as usual.
@@ -24,9 +42,9 @@ This extension relies on Firefox Sync to save (and sync!) your notepad. If you d
 
 I do not plan to support local storage alongside sync storage. If you would like to develop a local storage solution that works alongside sync storage, please create an issue and pull request!
 
-### _A feature isn't working! Something is broken! What's the deal with [blank]?_
+### _A feature isn't working! Something broke! What's the deal with [blank]?_
 
-Thanks for letting me know! Please [submit an issue on GitHub](https://github.com/bost-ty/firefox-lucid/issues) with your specifics so we can fix it. Pull requests will be reviewed and are always welcome.
+Thanks for letting me know! Please [submit an issue on GitHub](https://github.com/bost-ty/firefox-lucid/issues) with your specifics so we can fix it. Pull requests are always welcome.
 
 ## Thank you!
 

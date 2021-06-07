@@ -8,6 +8,7 @@
 
 // Initialize settings variables
 let timezoneOffset;
+let timezoneSet = false;
 let timezoneOffsetHours;
 let colorPreference;
 let fontPreference;
@@ -25,11 +26,14 @@ function restoreOptions() {
   let getting = browser.storage.sync.get();
   getting.then((result) => {
     if (getting) {
-      if (result.timezone) timezoneOffset = result.timezone;
+      if (result.timezone) {
+        timezoneOffset = result.timezone;
+        timezoneSet = true;
+      }
       if (result.colorPreference) colorPreference = result.colorPreference;
       if (result.fontPreference) fontPreference = result.fontPreference;
       if (result.savedNotes) savedNotes = result.savedNotes;
-      notepad.textContent = savedNotes;
+      // notepad.textContent = savedNotes;
       start();
     } else {
       console.error("Could not retrieve options from sync storage.");
@@ -84,6 +88,7 @@ function syncNotepad() {
   browser.storage.sync.set({
     savedNotes: savedNotes,
   });
+  console.info("Notepad synced");
 }
 
 function listenerUpdate() {
@@ -103,6 +108,7 @@ function start() {
        due to how Date object returns timezone offset */
     timezoneOffset = now.getTimezoneOffset() * -1;
     timezoneOffsetHours = timezoneOffset / 60;
+    console.log("ERROR");
   }
 
   // Create rough time of day
@@ -142,16 +148,17 @@ window.onblur = function () {
 };
 
 notepad.addEventListener("blur", (e) => {
+  syncNotepad();
   if (storeListener) {
     clearInterval(storeListener);
   }
-  storeListener = setInterval(listenerUpdate, 1000);
 });
 
 notepad.addEventListener("focus", (e) => {
   if (storeListener) {
     clearInterval(storeListener);
   }
+  storeListener = setInterval(listenerUpdate, 1000);
 });
 
 // Capture scrolling
@@ -160,7 +167,7 @@ function scrollCapture(e) {
   if (e.target !== notepad) notepad.scrollTop += e.deltaY;
 }
 
-// Event listeners
+// Load options from sync on DOMContentLoaded
 document.addEventListener("DOMContentLoaded", function () {
   restoreOptions();
 });
