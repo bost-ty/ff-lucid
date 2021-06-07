@@ -4,7 +4,7 @@
 // To focus, clarity, rest, and joy
 // Which, I hope, you find in this toy
 
-// Updated by @bost-ty, 2020, for Firefox
+// Updated and maintained by @bost-ty, 2021, for Firefox
 
 // Initialize settings variables
 let timezoneOffset;
@@ -12,10 +12,6 @@ let timezoneSet = false;
 let timezoneOffsetHours;
 let colorPreference;
 let fontPreference;
-
-// Testing
-
-let promiseLoaded = false;
 
 // Initialize notepad variables
 let notepad = document.querySelector(".notepad");
