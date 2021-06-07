@@ -4,7 +4,7 @@
 // To focus, clarity, rest, and joy
 // Which, I hope, you find in this toy
 
-// Updated and maintained by @bost-ty, 2021, for Firefox
+// Updated and maintained by @bost-ty, 2021, for Firefox, based on Daniel Eden's original code and design
 
 // Initialize settings variables
 let timezoneOffset;
