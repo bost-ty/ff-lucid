@@ -8,7 +8,6 @@
 
 // Initialize settings variables
 let timezoneOffset;
-let timezoneSet = false;
 let timezoneOffsetHours;
 let colorPreference;
 let fontPreference;
@@ -24,7 +23,6 @@ function restoreOptions() {
     if (getting) {
       if (result.timezone) {
         timezoneOffset = result.timezone;
-        timezoneSet = true;
       }
       if (result.colorPreference) colorPreference = result.colorPreference;
       if (result.fontPreference) fontPreference = result.fontPreference;
