@@ -7,7 +7,6 @@
 <img align="center" src="https://ffp4g1ylyit3jdyti1hqcvtb-wpengine.netdna-ssl.com/addons/files/2015/11/get-the-addon-small.png" alt="Firefox Get the Add-On">
 </div>
 
-<br />
 <hr />
 
 ### Table of Contents
