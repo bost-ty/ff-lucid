@@ -7,7 +7,7 @@
   --background: var(--med);
 
   --fontStack: var(--mono);
-  --mono: "FireCode NF", "Fira Code", "Cascadia Code", "Courier New", monospace;
+  --mono: "FireCode NF", "Fira Code", "IBM Plex Mono", "Cascadia Code", "Cascadia Mono", "Cascadia Code PL", "Cascadia Mono PL", "Courier New", monospace;
   --sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Arial, sans-serif;
 }
 
