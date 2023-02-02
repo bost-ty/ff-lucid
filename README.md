@@ -3,8 +3,6 @@
 <p style="font-size: 1.2em;">Lucid for Firefox. Replace your Home & New Tab pages with a simple personal notepad and greeting that includes the date and time of day.</p>
 <img src="https://img.shields.io/github/languages/code-size/bost-ty/firefox-lucid" alt="Code size shield">
 <img src="https://img.shields.io/amo/users/fflucid@fflucid.com" alt="Number of users shield">
-<br />
-<img align="center" src="https://ffp4g1ylyit3jdyti1hqcvtb-wpengine.netdna-ssl.com/addons/files/2015/11/get-the-addon-small.png" alt="Firefox Get the Add-On">
 </div>
 
 <hr />
