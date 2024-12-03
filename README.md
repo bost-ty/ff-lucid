@@ -1,6 +1,6 @@
 <div align="center">
 <h1>ff-lucid</h1>
-<p style="font-size: 1.2em;">Lucid for Firefox. Replace your Home & New Tab pages with a simple personal notepad and greeting that includes the date and time of day.</p>
+<p style="font-size: 1.2em;">Lucid for Firefox. Replace your Home & New Tab pages with a simple notepad and greeting that includes the date and time of day. Sync through your Mozilla account. Customize color scheme and font style.</p>
 <img src="https://img.shields.io/github/languages/code-size/bost-ty/firefox-lucid" alt="Code size shield">
 <img src="https://img.shields.io/amo/users/fflucid@fflucid.com" alt="Number of users shield">
 </div>
